@@ -17,8 +17,8 @@ warnings.filterwarnings('ignore')
 
 df = pd.read_csv(r'C:\Users\DELL\Downloads\Employee-Attrition - Employee-Attrition.csv')
 
-#print(df.head())
-#print(df.columns)
+print(df.head())
+print(df.columns)
 drop_cols=['EmployeeCount','EmployeeNumber','Over18']
 df.drop(columns=drop_cols,inplace=True,errors='ignore')
 
@@ -28,13 +28,13 @@ for col in df.select_dtypes(exclude=['object']).columns:
     df[col].fillna(df[col].median(),inplace=True)
 
 df['Attrition']=df['Attrition'].map({'Yes':1,'No':0})    
-#print(df)
-#print(df.describe())
+print(df)
+print(df.describe())
 
-#plt.figure(figsize=(10,6))
-#sns.countplot(x='Attrition',data=df)
-#plt.title("Attrition Distribution")
-#plt.show()
+plt.figure(figsize=(10,6))
+sns.countplot(x='Attrition',data=df)
+plt.title("Attrition Distribution")
+plt.show()
 
 x= df.drop('Attrition',axis=1)
 y=df['Attrition']
@@ -105,6 +105,7 @@ loaded_model = joblib.load("employee_attrition_model.joblib")
 loaded_preprocessor = joblib.load('preprocessor.joblib')
 
 print("Model and preprocessor loaded successfully!")
-#joblib.dump(model, "employee_attrition_model.joblib")
+joblib.dump(model, "employee_attrition_model.joblib")
 
  
+
